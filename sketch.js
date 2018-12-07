@@ -7,7 +7,7 @@ dimensions = random(30,60) //randomly generates height and width of ellipse
 function draw() { // put drawing code here
 clear(); //clears any ellipse drawn before. Important as this code would otherwise leave the previous ellipse in the drawing when looping.
 ellipse(x, y, dimensions, dimensions);
-y = y + 1 //makes ellipse travel down the canvas at a consistent rate. //NOTE: this will later be changed so that it goes at a quicker rate everytime a mouse is clicked.
+y = y + 1 //makes ellipse travel down the canvas at a consistent rate.
 if (y === 480){//If ellipse reaches the bottom of the canvas, the code ends
   clear();
   textSize(32)
@@ -15,3 +15,6 @@ if (y === 480){//If ellipse reaches the bottom of the canvas, the code ends
   noloop();
 }
 }
+
+//NOTE: I would like to change the color of the ellipse everytime that a mouse is clicked
+//NOTE: I would like the speed that the ellipse travels to increase every time that the mouse is clicked
