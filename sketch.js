@@ -1,21 +1,31 @@
 /*In this code, the user will need to keep the ellipse from hitting the ground.
 If the ellipse does touch the ground, the game is over.
-To insure that the ellipse does not touch the ground, the user must click on the ellipse as it descends.
-Keep in mind that with every successful click, the speed in which the ellipses will descend increases.
-The game will automatically count the amount of successful clicks that the user gets and display that throughout the game and upon conclusion of the game.
-The game itself is supposed to be fun. Try to beat your score!
+Otherwise, the user continues to
 */
 var level = 0; //Initializes level variable that is used when the ellipse descends. Initial value is set at 1 but will be increased via code in mousePressed function.
+var color;
 function setup(level) { // put setup code here
 createCanvas(640, 480);
+color = [random(255), random(255), random(255)];
 y = 50 // initial y-coordinate for ellispe
 x = random(250,600) // randomly generate x coodinate for ellipse from 250 to 600
 dimensions = random(30,60) //randomly generates height and width of ellipse
-
+noStroke(); //Ensures that no ellipse created has a stroke (otherwise each ellipse would have a black stroke)
 }
+
 function draw() { // put drawing code here
-clear(); //clears any ellipse drawn before. Important as this code would otherwise leave the previous ellipse in the drawing when looping.
-fill(random(255)) //Makes color flicker because it continues to loop through randomly generated colors every time a new ellipse is created (which is done really quickly)
+  if (level == 0){ // At the start - before an ellipse is clicked, the following lines of code within the if statement will be executed
+      clear();
+      fill(127)
+      textSize(40)
+      text('Click the ellipse to begin', 160, 150)
+      textSize(20)
+      text('Make sure that the ellipse does not \ntouch the bottom of this canvas!', 160, 350)
+    } else {
+      clear();
+    }
+// clear(); //clears any ellipse drawn before. Important as this code would otherwise leave the previous ellipse in the drawing when looping.
+fill(color) //Makes color flicker because it continues to loop through randomly generated colors every time a new ellipse is created (which is done really quickly)
 ellipse(x, y, dimensions, dimensions);
 fill(0)
 textSize(15)
@@ -43,5 +53,6 @@ function mousePressed(){ //Function that runs only when mouse is pressed
   if (d < 100){ //If the distance (as described above) is miniscule the code below will run
     level = level + 1 //the level in which the ellipse will descend continously increases
     setup(level); //restarts function if the ellipse is pressed via the mouse and increases the level in which the ellipse will now descend
+
   }
   }
